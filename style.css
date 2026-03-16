@@ -1,40 +1,46 @@
-/* Background gradient bergerak */
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+body, html {
     margin: 0;
-    background: linear-gradient(270deg, #ff6ec4, #7873f5, #42f5e6, #f5d142);
-    background-size: 800% 800%;
-    animation: gradientBG 20s ease infinite;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: linear-gradient(120deg, #ffd1dc, #ffefc1, #d1e8ff);
 }
 
-@keyframes gradientBG {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
-/* Container To-Do List */
 .container {
-    background: rgba(255, 255, 255, 0.9);
+    position: relative;
+    background: rgba(255, 255, 255, 0.85);
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     width: 100%;
     max-width: 400px;
-    backdrop-filter: blur(10px);
-}
-
-/* Judul */
-h1 {
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
     text-align: center;
-    color: #333;
 }
 
-/* Input dan tombol */
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#dateDisplay {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
 .input-group {
     display: flex;
     margin-bottom: 20px;
@@ -51,7 +57,7 @@ input[type="text"] {
 button {
     padding: 10px 15px;
     border: none;
-    background-color: #ff6ec4;
+    background-color: #ffa5c1;
     color: white;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
@@ -59,20 +65,19 @@ button {
 }
 
 button:hover {
-    background-color: #7873f5;
+    background-color: #ff7fa0;
 }
 
-/* Daftar tugas */
 ul {
     list-style: none;
     padding: 0;
 }
 
 li {
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.85);
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -85,7 +90,7 @@ li.completed {
 }
 
 li button {
-    background-color: #dc3545;
+    background-color: #f67280;
     border: none;
     color: white;
     padding: 5px 10px;
@@ -94,5 +99,5 @@ li button {
 }
 
 li button:hover {
-    background-color: #c82333;
+    background-color: #c0392b;
 }
