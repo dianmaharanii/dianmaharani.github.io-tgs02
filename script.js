@@ -1,13 +1,20 @@
-// Tampilkan tanggal, bulan, tahun
 const tanggalElem = document.getElementById('tanggal');
+const datePicker = document.getElementById('datePicker');
 
+// Set tanggal sekarang sebagai default
+const now = new Date();
+datePicker.value = now.toISOString().substr(0,10);
+
+// Fungsi tampilkan tanggal sesuai input
 function tampilkanTanggal() {
-    const sekarang = new Date();
+    const tanggal = new Date(datePicker.value);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    tanggalElem.textContent = sekarang.toLocaleDateString('id-ID', options);
+    tanggalElem.textContent = "Tanggal: " + tanggal.toLocaleDateString('id-ID', options);
 }
 
 tampilkanTanggal();
+
+datePicker.addEventListener('change', tampilkanTanggal);
 
 // Menambah, hapus, selesai tugas
 const taskInput = document.getElementById('taskInput');
@@ -46,7 +53,7 @@ addBtn.addEventListener('click', () => {
     taskInput.value = '';
 });
 
-// Tambah juga enter key
+// Enter key
 taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addBtn.click();
 });
