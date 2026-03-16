@@ -1,80 +1,75 @@
-/* Background animasi bergerak */
+/* Background gradient bergerak */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
-    background: linear-gradient(270deg, #ffe0e0, #e0f7ff, #e0ffe0, #fff0e0);
+    margin: 0;
+    background: linear-gradient(270deg, #ff6ec4, #7873f5, #42f5e6, #f5d142);
     background-size: 800% 800%;
     animation: gradientBG 20s ease infinite;
 }
 
 @keyframes gradientBG {
-    0% {background-position:0% 50%;}
-    50% {background-position:100% 50%;}
-    100% {background-position:0% 50%;}
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
+/* Container To-Do List */
 .container {
-    background: rgba(255, 255, 255, 0.85);
-    padding: 30px 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    width: 350px;
-    position: relative;
-    z-index: 1;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
 }
 
-header h1 {
+/* Judul */
+h1 {
     text-align: center;
-    margin-bottom: 10px;
     color: #333;
 }
 
-header p {
-    text-align: center;
-    font-size: 14px;
-    color: #555;
-    margin-top: 5px;
-}
-
-.todo-input {
+/* Input dan tombol */
+.input-group {
     display: flex;
     margin-bottom: 20px;
 }
 
-#taskInput {
+input[type="text"] {
     flex: 1;
     padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 10px 0 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
     outline: none;
 }
 
-#addBtn {
-    padding: 10px 20px;
+button {
+    padding: 10px 15px;
     border: none;
-    background-color: #ff9999;
+    background-color: #ff6ec4;
     color: white;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 5px 5px 0;
     cursor: pointer;
     transition: 0.3s;
 }
 
-#addBtn:hover {
-    background-color: #ff6666;
+button:hover {
+    background-color: #7873f5;
 }
 
-#taskList {
-    list-style-type: none;
+/* Daftar tugas */
+ul {
+    list-style: none;
     padding: 0;
 }
 
-#taskList li {
-    background: #f9f9f9;
+li {
+    background: rgba(255,255,255,0.8);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -84,46 +79,20 @@ header p {
     transition: 0.3s;
 }
 
-#taskList li.completed {
+li.completed {
     text-decoration: line-through;
-    color: gray;
-    background: #d3ffd3;
+    opacity: 0.6;
 }
 
-.task-buttons button {
-    margin-left: 5px;
+li button {
+    background-color: #dc3545;
     border: none;
-    padding: 5px 8px;
+    color: white;
+    padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.task-buttons .doneBtn {
-    background-color: #99ff99;
-}
-
-.task-buttons .doneBtn:hover {
-    background-color: #66ff66;
-}
-
-.task-buttons .deleteBtn {
-    background-color: #ff9999;
-}
-
-.task-buttons .deleteBtn:hover {
-    background-color: #ff6666;
-}
-
-/* Gambar bergerak */
-.moving-heart {
-    display: block;
-    margin: 20px auto 0;
-    width: 50px;
-    animation: moveHeart 2s infinite alternate;
-}
-
-@keyframes moveHeart {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-15px); }
+li button:hover {
+    background-color: #c82333;
 }
