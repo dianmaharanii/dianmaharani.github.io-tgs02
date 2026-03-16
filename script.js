@@ -1,59 +1,42 @@
-const tanggalElem = document.getElementById('tanggal');
-const datePicker = document.getElementById('datePicker');
+const taskInput = document.getElementById("taskInput");
+const addBtn = document.getElementById("addBtn");
+const taskList = document.getElementById("taskList");
 
-// Set tanggal sekarang sebagai default
-const now = new Date();
-datePicker.value = now.toISOString().substr(0,10);
-
-// Fungsi tampilkan tanggal sesuai input
-function tampilkanTanggal() {
-    const tanggal = new Date(datePicker.value);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    tanggalElem.textContent = "Tanggal: " + tanggal.toLocaleDateString('id-ID', options);
-}
-
-tampilkanTanggal();
-
-datePicker.addEventListener('change', tampilkanTanggal);
-
-// Menambah, hapus, selesai tugas
-const taskInput = document.getElementById('taskInput');
-const addBtn = document.getElementById('addBtn');
-const taskList = document.getElementById('taskList');
-
-addBtn.addEventListener('click', () => {
+// Tambah tugas baru
+addBtn.addEventListener("click", () => {
     const taskText = taskInput.value.trim();
-    if (taskText === '') return;
+    if (taskText !== "") {
+        addTask(taskText);
+        taskInput.value = "";
+    }
+});
 
-    const li = document.createElement('li');
-    li.textContent = taskText;
+// Fungsi menambahkan tugas ke list
+function addTask(text) {
+    const li = document.createElement("li");
 
-    const buttonsDiv = document.createElement('div');
-    buttonsDiv.classList.add('task-buttons');
+    li.textContent = text;
 
-    const doneBtn = document.createElement('button');
-    doneBtn.textContent = 'Selesai';
-    doneBtn.classList.add('doneBtn');
-    doneBtn.addEventListener('click', () => {
-        li.classList.toggle('completed');
-    });
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Hapus';
-    deleteBtn.classList.add('deleteBtn');
-    deleteBtn.addEventListener('click', () => {
+    // Tombol hapus
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Hapus";
+    deleteBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // supaya klik tombol tidak menandai selesai
         taskList.removeChild(li);
     });
 
-    buttonsDiv.appendChild(doneBtn);
-    buttonsDiv.appendChild(deleteBtn);
-    li.appendChild(buttonsDiv);
+    // Tandai selesai saat klik li
+    li.addEventListener("click", () => {
+        li.classList.toggle("completed");
+    });
+
+    li.appendChild(deleteBtn);
     taskList.appendChild(li);
+}
 
-    taskInput.value = '';
-});
-
-// Enter key
-taskInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') addBtn.click();
+// Tambah tugas dengan tekan Enter
+taskInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        addBtn.click();
+    }
 });
